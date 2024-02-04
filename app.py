@@ -50,7 +50,7 @@ def TakeCommands():
             print(Error)
         return voice.lower()
     
-# button save action adn make QRCode with data
+# button save action and make QRCode with data
 def Saving():
     namefile = ESave.get()
     na = EName.get()
@@ -93,7 +93,7 @@ def B_City():
     name = query
     ECity.insert(0,name)   
 
-def B_Phone():######################################################################
+def B_Phone():
     query = TakeCommands()
     name = query
     EPhone.insert(0,name)
@@ -154,9 +154,7 @@ BPhone.place(x=450, y=288)
 
 BCity = Button(root , text='🔊', bg = 'navy' , fg='white' ,font=('Tajawal',11) , command= B_City)
 BCity.place(x=450,y=328)
-
-
-    
+  
 # Label save :
 LSave = Label(root , text = 'File Name :' , font= ('Tajawal' , 16))
 LSave.place(x=10,y=380)
@@ -175,7 +173,7 @@ Bsave.place(x=400 , y=375)
 LRights= Label(root , text='Developed By HESHAM' , font = ("Arial",10))
 LRights.place(x=180,y=450)
 
-
+# Run :
 welcome()
 root.mainloop()
 ThankYou()
