@@ -19,6 +19,7 @@ root.title('Employee App By [HESHAM]')
 root.geometry('500x470+500+100')
 root.resizable(False,False)
 
+
 # welcome sound:
 def welcome():
     music = AudioSegment.from_wav("sounds/welcome.wav")
@@ -56,11 +57,19 @@ def Saving():
     jo = EJob.get()
     co = EContract.get()
     cy = ECity.get()
-    qr = qrcode.make(f'Name : {na} \nJob Profile : {jo}  \nContract Type : {co} \nCity : {cy}')
-    qr.save("employees/"+namefile+".jpg")
-    engine.say("Saved Successfully")   
-    messagebox.showinfo('Saved Successfully 👌' , 'Save ['+namefile+'] Employee')
-    engine.runAndWait() 
+    
+    # check if Entry == null :
+    if namefile == "" or  na =="" or jo == "" or co == "" or cy == "" :
+        messagebox.showinfo('Data Missing!' , 'Please insert data in required fields !')
+ 
+    else:
+        
+        qr = qrcode.make(f'Name : {na} \nJob Profile : {jo}  \nContract Type : {co} \nCity : {cy}')
+        qr.save("employees/"+namefile+".jpg")
+        engine.say("Saved Successfully")   
+        messagebox.showinfo('Saved Successfully 👌' , 'Save ['+namefile+'] Employee')
+        engine.runAndWait()
+  
 
 # buttons actions:
 def B_Name():
@@ -101,6 +110,10 @@ contract.place(x= 10 ,y=250)
 city = Label(root , text = "City :", font= ("Tajawal",16))
 city.place(x= 10 ,y=290)
 
+# notice : 
+LNotice = Label(root , text='All data is required' ,font=('arial' , 12) , fg='navy' )
+LNotice.place(x=181, y=139)
+
 # Entry Labels:
 EName = Entry(root , font= ("Tajawal",16))
 EName.place(x=200,y=170)
@@ -130,8 +143,10 @@ BCity.place(x=450,y=288)
 
     
 # Label save :
-LSave = Label(root , text = 'Save Data :' , font= ('Tajawal' , 16))
+LSave = Label(root , text = 'File Name :' , font= ('Tajawal' , 16))
 LSave.place(x=10,y=380)
+LReq = Label(root,text = '(Required)' , font =('Tajawal',8) , fg='red')
+LReq.place(x=135, y=385)
 
 # Entry Save
 ESave = Entry(root, font=('Tajawal',16), width=16)
