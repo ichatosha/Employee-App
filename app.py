@@ -57,17 +57,18 @@ def Saving():
     jo = EJob.get()
     co = EContract.get()
     cy = ECity.get()
+    ph = EPhone.get()
     
     # check if Entry == null :
-    if namefile == "" or  na =="" or jo == "" or co == "" or cy == "" :
+    if namefile == "" or  na =="" or jo == "" or co == "" or cy == "" or ph == "":
         messagebox.showinfo('Data Missing!' , 'Please insert data in required fields !')
  
     else:
         
-        qr = qrcode.make(f'Name : {na} \nJob Profile : {jo}  \nContract Type : {co} \nCity : {cy}')
+        qr = qrcode.make(f'Employee Name : {na}\nJob Profile : {jo}\nContract Type : {co}\nPhone number : {ph}\nCity : {cy}')
         qr.save("employees/"+namefile+".jpg")
         engine.say("Saved Successfully")   
-        messagebox.showinfo('Saved Successfully 👌' , 'Save ['+namefile+'] Employee')
+        messagebox.showinfo('Saved Successfully 👌' , 'Saved ['+namefile+'] Employee')
         engine.runAndWait()
   
 
@@ -91,7 +92,12 @@ def B_City():
     query = TakeCommands()
     name = query
     ECity.insert(0,name)   
-    
+
+def B_Phone():######################################################################
+    query = TakeCommands()
+    name = query
+    EPhone.insert(0,name)
+        
 # Logo
 photo = PhotoImage(file = 'logo.png')
 l_img = Label(root,image= photo)
@@ -107,8 +113,11 @@ job.place(x=10  ,y=210)
 contract = Label(root , text = "Contract type :", font= ("Tajawal",16))
 contract.place(x= 10 ,y=250)
 
+phone = Label(root , text ="Phone :" , font = ('Tajawal' , 16))
+phone.place(x=10 , y= 290)
+
 city = Label(root , text = "City :", font= ("Tajawal",16))
-city.place(x= 10 ,y=290)
+city.place(x= 10 ,y=330)
 
 # notice : 
 LNotice = Label(root , text='All data is required' ,font=('arial' , 12) , fg='navy' )
@@ -124,8 +133,11 @@ EJob.place(x=200,y=210)
 EContract = Entry(root , font= ("Tajawal",16))
 EContract.place(x=200,y=250)
 
+EPhone = Entry(root , font=('Tajawal' ,16))
+EPhone.place(x=200,y=290)
+
 ECity = Entry(root , font= ("Tajawal",16))
-ECity.place(x=200,y=290)
+ECity.place(x=200,y=330)
 
 # Buttons to speak:
 BName = Button(root , text='🔊', bg = 'navy' , fg='white' ,font=('Tajawal',11) , command= B_Name)
@@ -137,8 +149,11 @@ BJob.place(x=450,y=208)
 BContract = Button(root,text='🔊', bg = 'navy' , fg='white' ,font=('Tajawal',11), command= B_Contract)
 BContract.place(x=450,y=248)
 
+BPhone = Button(root,text= '🔊' ,bg='navy' , fg= 'white' ,font=('tajawal', 11),  command=B_Phone)
+BPhone.place(x=450, y=288)
+
 BCity = Button(root , text='🔊', bg = 'navy' , fg='white' ,font=('Tajawal',11) , command= B_City)
-BCity.place(x=450,y=288)
+BCity.place(x=450,y=328)
 
 
     
